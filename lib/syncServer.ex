@@ -1,6 +1,8 @@
 defmodule SyncServer do
   require Logger
 
+
+
   def accept(port) do
     {:ok, socket} = :gen_tcp.listen(port, [:binary, packet: :line, active: false, reuseaddr: true])
     Logger.info "Acceptiong connections on port#{port}"
@@ -23,7 +25,7 @@ defmodule SyncServer do
 
   defp read_line(socket) do
     {:ok, data} = :gen_tcp.recv(socket, 0)
-    Logger.
+    Logger.info data
     data
   end
 
