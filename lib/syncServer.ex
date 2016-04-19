@@ -8,7 +8,10 @@ defmodule SyncServer do
   def add_word(word) do
     Agent.update(
       __MODULE__,
-      fn dict -> Map.update(dict, word, &(&1 + 1)) end)
+      fn dict ->
+        IO.inspect dict
+        Map.update(dict, word, 1, &(&1 + 1))
+      end)
   end
 
   def count_for(word) do
@@ -16,6 +19,7 @@ defmodule SyncServer do
   end
 
   def words do
+    IO.inspect __MODULE__
     Agent.get(__MODULE__, &(Map.keys(&1)))
   end
 end
